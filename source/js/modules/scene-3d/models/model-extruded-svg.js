@@ -6,8 +6,6 @@ export default class ModelExtrudedSVG extends Model {
     super();
 
     this.group = new THREE.Group();
-    this.depth = shape.depth;
-    this.cap = shape.cap;
     this.paths = shape.paths;
   }
 

@@ -5,37 +5,22 @@ const SVG_IMG_FOLDER = `./img/module-6/svg-forms`;
 const SVG_SHAPES = {
   flamingo: {
     src: `${SVG_IMG_FOLDER}/flamingo.svg`,
-    depth: 8,
-    cap: 2,
-    color: `#C75762`,
     paths: null,
   },
   snowflake: {
     src: `${SVG_IMG_FOLDER}/snowflake.svg`,
-    depth: 8,
-    cap: 2,
-    color: `#224FA7`,
     paths: null,
   },
   question: {
     src: `${SVG_IMG_FOLDER}/question.svg`,
-    depth: 8,
-    cap: 2,
-    color: `#224FA7`,
     paths: null,
   },
   leaf1: {
     src: `${SVG_IMG_FOLDER}/leaf.svg`,
-    depth: 8,
-    cap: 2,
-    color: `#07925D`,
     paths: null,
   },
   leaf2: {
     src: `${SVG_IMG_FOLDER}/leaf.svg`,
-    depth: 3,
-    cap: 3,
-    color: `#07925D`,
     paths: null,
   },
   keyhole: {
@@ -44,9 +29,6 @@ const SVG_SHAPES = {
   },
   flower: {
     src: `${SVG_IMG_FOLDER}/flower.svg`,
-    depth: 4,
-    cap: 2,
-    color: `#6649A3`,
     paths: null,
   },
 };

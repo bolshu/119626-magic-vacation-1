@@ -52,7 +52,7 @@ export default class Model extends THREE.Group {
   getColor(key) {
     if (!key || !COLORS[key]) {
       // eslint-disable-next-line no-console
-      console.error(`Wrong color. Check Model.getColor arg`);
+      console.error(`${key} Wrong color. Check Model.getColor arg`);
 
       return COLORS.white;
     }
@@ -69,8 +69,7 @@ export default class Model extends THREE.Group {
 
     if (type === `basic`) {
       return new THREE.MeshPhongMaterial({
-        roughness: 0.8,
-        metalness: 0.5,
+        shininess: 0.3,
         ...options,
       });
     }
@@ -84,7 +83,7 @@ export default class Model extends THREE.Group {
     }
 
     // eslint-disable-next-line no-console
-    console.error(`Wrong material type. Check Model.getMaterial type arg`);
+    console.error(`${type} Wrong material type. Check Model.getMaterial type arg`);
     return new THREE.MeshBasicMaterial({color: this.getColor(`white`)});
   }
 }

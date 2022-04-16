@@ -11,7 +11,7 @@ export default class Scene3D {
     this.aspectRatio = this.width / this.height;
     this.perspectiveAngle = 35;
     this.zCoordinateMin = 0.1;
-    this.zCoordinateMax = 3000;
+    this.zCoordinateMax = 1000;
 
     this.animationId = null;
     this.material = null;
@@ -103,6 +103,8 @@ export default class Scene3D {
     this.renderer.setClearColor(color, alpha);
     this.renderer.setPixelRatio(this.devicePixelRatio);
     this.renderer.setSize(this.width, this.height);
+
+    this.scene.add(this.getLights());
   }
 
   renderScene() {
@@ -141,8 +143,6 @@ export default class Scene3D {
   }
 
   start() {
-    this.scene.add(this.getLights());
-
     this.stop();
     this.startAnimation();
 
@@ -162,14 +162,14 @@ export default class Scene3D {
     // Light 2
     const lightUnit2 = new THREE.PointLight(new THREE.Color(`rgb(246,242,255)`), 0.6, 0, 2);
 
-    lightUnit2.position.set(-785, -350, -710);
+    lightUnit2.position.set(-785, -350, 710);
 
     light.add(lightUnit2);
 
     // Light 3
     const lightUnit3 = new THREE.PointLight(new THREE.Color(`rgb(245,254,255)`), 0.95, 0, 2);
 
-    lightUnit3.position.set(730, 800, -985);
+    lightUnit3.position.set(730, 800, 985);
 
     light.add(lightUnit3);
 
