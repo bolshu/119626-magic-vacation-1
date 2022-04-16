@@ -1,14 +1,18 @@
 import * as THREE from 'three';
+import Model from './model';
 
-export default class ModelSnowman extends THREE.Group {
+export default class ModelSnowman extends Model {
   constructor() {
     super();
 
-    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0XB2D0F4});
+    this.materialMainParams = {color: this.getColor(`snowColor`)};
+    this.materialMain = this.getMaterial(`strong`, this.materialMainParams);
+
+    this.materialAdditionalParams = {color: this.getColor(`orange`)};
+    this.materialAdditional = this.getMaterial(`strong`, this.materialAdditionalParams);
 
     this.constructChildren();
   }
-
 
   constructChildren() {
     this.addHead();
@@ -18,7 +22,7 @@ export default class ModelSnowman extends THREE.Group {
 
   addHead() {
     const geometry = new THREE.SphereGeometry(44, 32, 32);
-    const mesh = new THREE.Mesh(geometry, this.defaultMaterial);
+    const mesh = new THREE.Mesh(geometry, this.materialMain);
 
     mesh.position.set(0, 173, 0);
 
@@ -27,7 +31,7 @@ export default class ModelSnowman extends THREE.Group {
 
   addBody() {
     const geometry = new THREE.SphereGeometry(75, 32, 32);
-    const mesh = new THREE.Mesh(geometry, this.defaultMaterial);
+    const mesh = new THREE.Mesh(geometry, this.materialMain);
 
     mesh.position.set(0, 65, 0);
 
@@ -36,8 +40,7 @@ export default class ModelSnowman extends THREE.Group {
 
   addCarrot() {
     const geometry = new THREE.ConeGeometry(18, 75, 30);
-    const material = new THREE.MeshStandardMaterial({color: 0XFF4500});
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new THREE.Mesh(geometry, this.materialAdditional);
 
     mesh.position.set(50, 173, 0);
     mesh.rotateZ(THREE.MathUtils.degToRad(-90));

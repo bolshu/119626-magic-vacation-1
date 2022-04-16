@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import ExtrudedSVG from '../extruded-svg';
+import ModelExtrudedSVG from '../models/model-extruded-svg';
 import ModelStreetLamp from '../models/street-lamp';
 import ModelPyramid from '../models/pyramid';
 import ShapesLoader from "../shapes-loader";
@@ -34,7 +34,7 @@ export default class StoryScene2 extends THREE.Group {
   async addLeaf() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf2`);
-    const model = new ExtrudedSVG(shape).get3DModel();
+    const model = new ModelExtrudedSVG(shape).get3DModel();
 
     model.position.set(50, -100, 50);
 

@@ -1,14 +1,12 @@
 import * as THREE from 'three';
+import Model from './model';
 
-export default class ModelPyramid extends THREE.Group {
+export default class ModelPyramid extends Model {
   constructor() {
     super();
 
-    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0X1861CF});
-
     this.constructChildren();
   }
-
 
   constructChildren() {
     this.addPyramid();
@@ -16,7 +14,9 @@ export default class ModelPyramid extends THREE.Group {
 
   addPyramid() {
     const geometry = new THREE.ConeGeometry(Math.hypot(250, 250) / 2, 280, 4);
-    const mesh = new THREE.Mesh(geometry, this.defaultMaterial);
+    const materialParams = {color: this.getColor(`blue`)};
+    const material = this.getMaterial(`soft`, materialParams);
+    const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(0, 125, 0);
 

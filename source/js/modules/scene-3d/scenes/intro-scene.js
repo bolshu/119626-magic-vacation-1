@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import ExtrudedSVG from '../extruded-svg';
+import ModelExtrudedSVG from '../models/model-extruded-svg';
+import ModelKeyhole from '../models/keyhole';
 import ShapesLoader from "../shapes-loader";
 
 export default class IntroScene extends THREE.Group {
@@ -20,7 +21,7 @@ export default class IntroScene extends THREE.Group {
   async addQuestion() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`question`);
-    const model = new ExtrudedSVG(shape).get3DModel();
+    const model = new ModelExtrudedSVG(shape).get3DModel();
 
     model.position.set(0, 0, 20);
     model.rotateX(THREE.MathUtils.degToRad(-220));
@@ -32,7 +33,7 @@ export default class IntroScene extends THREE.Group {
   async addFlamingo() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flamingo`);
-    const model = new ExtrudedSVG(shape).get3DModel();
+    const model = new ModelExtrudedSVG(shape).get3DModel();
 
     model.position.set(-250, 200, 50);
     model.rotateX(THREE.MathUtils.degToRad(-215));
@@ -45,7 +46,7 @@ export default class IntroScene extends THREE.Group {
   async addSnowflake() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`snowflake`);
-    const model = new ExtrudedSVG(shape).get3DModel();
+    const model = new ModelExtrudedSVG(shape).get3DModel();
 
     model.position.set(-200, 0, 40);
     model.rotateX(THREE.MathUtils.degToRad(-15));
@@ -57,7 +58,7 @@ export default class IntroScene extends THREE.Group {
   async addLeaf() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf1`);
-    const model = new ExtrudedSVG(shape).get3DModel();
+    const model = new ModelExtrudedSVG(shape).get3DModel();
 
     model.position.set(200, 100, 70);
     model.rotateX(THREE.MathUtils.degToRad(180));
@@ -69,7 +70,7 @@ export default class IntroScene extends THREE.Group {
   async addKeyhole() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`keyhole`);
-    const model = new ExtrudedSVG(shape).get3DModel();
+    const model = new ModelKeyhole(shape);
 
     model.position.set(-1000, 1000, 20);
     model.rotateX(THREE.MathUtils.degToRad(180));

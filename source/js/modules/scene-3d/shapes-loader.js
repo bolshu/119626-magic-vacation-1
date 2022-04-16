@@ -40,9 +40,6 @@ const SVG_SHAPES = {
   },
   keyhole: {
     src: `${SVG_IMG_FOLDER}/keyhole.svg`,
-    depth: 20,
-    cap: 2,
-    color: `#4E4069`,
     paths: null,
   },
   flower: {

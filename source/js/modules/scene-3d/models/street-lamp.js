@@ -1,14 +1,18 @@
 import * as THREE from 'three';
+import Model from './model';
 
-export default class ModelStreetLamp extends THREE.Group {
+export default class ModelStreetLamp extends Model {
   constructor() {
     super();
 
-    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0X1861CF});
+    this.materialMainParams = {color: this.getColor(`blue`)};
+    this.materialMain = this.getMaterial(`soft`, this.materialMainParams);
+
+    this.materialAdditionalParams = {color: this.getColor(`lightBlue`)};
+    this.materialAdditional = this.getMaterial(`soft`, this.materialAdditionalParams);
 
     this.constructChildren();
   }
-
 
   constructChildren() {
     this.addLamp();
@@ -18,22 +22,21 @@ export default class ModelStreetLamp extends THREE.Group {
 
   addLamp() {
     const lampTopGeometry = new THREE.CylinderGeometry(45, 57, 6, 4);
-    const lampTopMesh = new THREE.Mesh(lampTopGeometry, this.defaultMaterial);
+    const lampTopMesh = new THREE.Mesh(lampTopGeometry, this.materialMain);
 
     lampTopMesh.position.set(0, 433, 0);
 
     this.add(lampTopMesh);
 
     const lampMidGeometry = new THREE.CylinderGeometry(42, 34, 60, 4);
-    const lampMidMaterial = new THREE.MeshStandardMaterial({color: 0XAE9BFF});
-    const lampMidMesh = new THREE.Mesh(lampMidGeometry, lampMidMaterial);
+    const lampMidMesh = new THREE.Mesh(lampMidGeometry, this.materialAdditional);
 
     lampMidMesh.position.set(0, 400, 0);
 
     this.add(lampMidMesh);
 
     const lampBottomGeometry = new THREE.CylinderGeometry(37, 37, 4, 4);
-    const lampBottomMesh = new THREE.Mesh(lampBottomGeometry, this.defaultMaterial);
+    const lampBottomMesh = new THREE.Mesh(lampBottomGeometry, this.materialMain);
 
     lampBottomMesh.position.set(0, 368, 0);
 
@@ -42,7 +45,7 @@ export default class ModelStreetLamp extends THREE.Group {
 
   addPillar() {
     const geometry = new THREE.CylinderGeometry(7, 7, 230, 16);
-    const mesh = new THREE.Mesh(geometry, this.defaultMaterial);
+    const mesh = new THREE.Mesh(geometry, this.materialMain);
 
     mesh.position.set(0, 251, 0);
 
@@ -51,14 +54,14 @@ export default class ModelStreetLamp extends THREE.Group {
 
   addBase() {
     const baseTopGeometry = new THREE.SphereGeometry(16, 32, 32);
-    const baseTopMesh = new THREE.Mesh(baseTopGeometry, this.defaultMaterial);
+    const baseTopMesh = new THREE.Mesh(baseTopGeometry, this.materialMain);
 
     baseTopMesh.position.set(0, 120, 0);
 
     this.add(baseTopMesh);
 
     const baseBottomGeometry = new THREE.CylinderGeometry(16, 16, 120, 16);
-    const baseBottomMesh = new THREE.Mesh(baseBottomGeometry, this.defaultMaterial);
+    const baseBottomMesh = new THREE.Mesh(baseBottomGeometry, this.materialMain);
 
     baseBottomMesh.position.set(0, 60, 0);
 

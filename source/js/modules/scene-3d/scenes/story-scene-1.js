@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import ExtrudedSVG from '../extruded-svg';
+import ModelExtrudedSVG from '../models/model-extruded-svg';
 import ShapesLoader from "../shapes-loader";
 import ModelSaturn from "../models/saturn";
 import ModelCarpet from "../models/carpet";
@@ -20,7 +20,7 @@ export default class StoryScene1 extends THREE.Group {
   async addFlower() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flower`);
-    const model = new ExtrudedSVG(shape).get3DModel();
+    const model = new ModelExtrudedSVG(shape).get3DModel();
 
     model.position.set(-100, 150, 50);
     model.rotateY(THREE.MathUtils.degToRad(-45));
@@ -30,7 +30,10 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   addSaturn() {
-    const model = new ModelSaturn();
+    const model = new ModelSaturn({
+      mainColor: `dominantRed`,
+      additionalColor: `brightPurple`,
+    });
     model.position.set(-250, 80, 100);
 
     this.add(model);

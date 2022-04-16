@@ -4,6 +4,7 @@ import Scene3D from "./scene-3d";
 import StoryScene1 from "./scenes/story-scene-1";
 import StoryScene2 from "./scenes/story-scene-2";
 import StoryScene3 from "./scenes/story-scene-3";
+import StoryScene4 from "./scenes/story-scene-4";
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
@@ -82,6 +83,7 @@ export default class Scene3DStory extends Scene3D {
     this.scene.add(this.getScene1());
     this.scene.add(this.getScene2());
     this.scene.add(this.getScene3());
+    this.scene.add(this.getScene4());
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
 
@@ -122,5 +124,9 @@ export default class Scene3DStory extends Scene3D {
 
   getScene3() {
     return new StoryScene3();
+  }
+
+  getScene4() {
+    return new StoryScene4();
   }
 }
