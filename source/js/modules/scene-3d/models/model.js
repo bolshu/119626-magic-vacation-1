@@ -54,10 +54,10 @@ export default class Model extends THREE.Group {
       // eslint-disable-next-line no-console
       console.error(`${key} Wrong color. Check Model.getColor arg`);
 
-      return COLORS.white;
+      return new THREE.Color(COLORS.white);
     }
 
-    return COLORS[key];
+    return new THREE.Color(COLORS[key]);
   }
 
   getMaterial(type, options) {

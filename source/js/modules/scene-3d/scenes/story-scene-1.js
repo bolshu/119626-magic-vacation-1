@@ -31,8 +31,8 @@ export default class StoryScene1 extends THREE.Group {
 
   addSaturn() {
     const model = new ModelSaturn({
-      mainColor: `dominantRed`,
-      additionalColor: `brightPurple`,
+      colorBase: `dominantRed`,
+      colorAdditional: `brightPurple`,
     });
     model.position.set(-250, 80, 100);
 
@@ -40,10 +40,12 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   addCarpet() {
-    const model = new ModelCarpet();
+    const model = new ModelCarpet({
+      colorBase: `lightPurple`,
+      colorAdditional: `additionalPurple`,
+    });
 
-    model.position.set(0, -50, 0);
-    model.scale.set(0.5, 0.5, 1);
+    model.position.set(0, -200, -250);
     model.rotateY(THREE.MathUtils.degToRad(-45));
 
     this.add(model);

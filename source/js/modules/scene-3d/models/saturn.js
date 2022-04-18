@@ -3,8 +3,8 @@ import Model from './model';
 
 export default class ModelSaturn extends Model {
   constructor({
-    mainColor,
-    additionalColor,
+    colorBase,
+    colorAdditional,
   }) {
     super();
     this.radiusPlanet = 60;
@@ -12,10 +12,10 @@ export default class ModelSaturn extends Model {
     this.radiusRingInner = 80;
     this.radiusRingOuter = 120;
 
-    this.materialMainParams = {color: this.getColor(mainColor)};
+    this.materialMainParams = {color: this.getColor(colorBase)};
     this.materialMain = this.getMaterial(`soft`, this.materialMainParams);
 
-    this.materialAdditionalParams = {color: this.getColor(additionalColor)};
+    this.materialAdditionalParams = {color: this.getColor(colorAdditional)};
     this.materialSatelite = this.getMaterial(`soft`, this.materialAdditionalParams);
     this.materialRing = this.getMaterial(`soft`, {
       ...this.materialAdditionalParams,
