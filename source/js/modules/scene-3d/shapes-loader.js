@@ -56,7 +56,7 @@ export default class ShapesLoader {
           // resource URL
           SVG_SHAPES[key].src,
           // called when the resource is loaded
-          async function (data) {
+          function (data) {
             SVG_SHAPES[key].paths = data.paths;
             resolve();
           },
