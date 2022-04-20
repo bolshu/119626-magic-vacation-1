@@ -5,12 +5,16 @@ export default class ModelSaturn extends Model {
   constructor({
     colorBase,
     colorAdditional,
+    shouldRenderSattelite = true,
   }) {
     super();
+
     this.radiusPlanet = 60;
     this.radiusSatelite = 10;
     this.radiusRingInner = 80;
     this.radiusRingOuter = 120;
+
+    this.shouldRenderSattelite = shouldRenderSattelite;
 
     this.materialMainParams = {color: this.getColor(colorBase)};
     this.materialMain = this.getMaterial(`soft`, this.materialMainParams);
@@ -30,9 +34,12 @@ export default class ModelSaturn extends Model {
 
   constructChildren() {
     this.addPlanet();
-    this.addSatellite();
-    this.addRope();
     this.addRing();
+
+    if (this.shouldRenderSattelite) {
+      this.addSatellite();
+      this.addRope();
+    }
   }
 
   addPlanet() {
@@ -67,8 +74,8 @@ export default class ModelSaturn extends Model {
     const geometry = new THREE.LatheGeometry(points, 32);
     const mesh = new THREE.Mesh(geometry, this.materialRing);
 
-    mesh.rotateX(THREE.MathUtils.degToRad(18));
-    mesh.rotateZ(THREE.MathUtils.degToRad(10));
+    mesh.rotateX(THREE.MathUtils.degToRad(5));
+    mesh.rotateZ(THREE.MathUtils.degToRad(25));
 
     this.add(mesh);
   }

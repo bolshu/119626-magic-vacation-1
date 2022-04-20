@@ -5,8 +5,11 @@ import ModelKeyhole from '../models/keyhole';
 import ModelFlamingo from '../models/flamingo';
 import ModelSnowflake from '../models/snowflake';
 import ModelQuestion from '../models/question';
+import ModelSaturn from '../models/saturn';
 import ModelLeaf1 from '../models/leaf-1';
 import Model from '../models/model';
+
+const Z_POS = 200;
 
 export default class IntroScene extends THREE.Group {
   constructor() {
@@ -18,15 +21,17 @@ export default class IntroScene extends THREE.Group {
   }
 
   constructChildren() {
+    this.addKeyhole();
     this.addQuestion();
     this.addFlamingo();
     this.addSnowflake();
     this.addLeaf();
-    this.addKeyhole();
 
     this.addSuitcase();
     this.addWatermelon();
     this.addAirplane();
+
+    this.addSaturn();
   }
 
   async addQuestion() {
@@ -34,46 +39,57 @@ export default class IntroScene extends THREE.Group {
     const shape = await loader.getShape(`question`);
     const model = new ModelQuestion(shape);
 
-    model.position.set(0, 0, 20);
-    model.rotateX(THREE.MathUtils.degToRad(-220));
-    model.scale.set(2, 2, 2);
+    model.position.set(100, -250, Z_POS);
+
+    model.rotateX(THREE.MathUtils.degToRad(140));
+    model.rotateZ(THREE.MathUtils.degToRad(-20));
 
     this.add(model);
   }
 
   async addFlamingo() {
+    const scale = 2;
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flamingo`);
     const model = new ModelFlamingo(shape);
 
-    model.position.set(-250, 200, 50);
-    model.rotateX(THREE.MathUtils.degToRad(-215));
-    model.rotateY(THREE.MathUtils.degToRad(-205));
-    model.scale.set(2, 2, 1);
+    model.position.set(-400, 300, Z_POS);
+    model.scale.set(scale, scale, scale);
+
+    model.rotateX(THREE.MathUtils.degToRad(180));
+    model.rotateY(THREE.MathUtils.degToRad(160));
+    model.rotateZ(THREE.MathUtils.degToRad(15));
 
     this.add(model);
   }
 
   async addSnowflake() {
+    const scale = 0.85;
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`snowflake`);
     const model = new ModelSnowflake(shape);
 
-    model.position.set(-200, 0, 40);
-    model.rotateX(THREE.MathUtils.degToRad(-15));
-    model.rotateY(THREE.MathUtils.degToRad(25));
+    model.position.set(-350, 0, Z_POS);
+    model.scale.set(scale, scale, scale);
+
+    model.rotateX(THREE.MathUtils.degToRad(-20));
+    model.rotateY(THREE.MathUtils.degToRad(35));
 
     this.add(model);
   }
 
   async addLeaf() {
+    const scale = 1.5;
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf1`);
     const model = new ModelLeaf1(shape);
 
-    model.position.set(200, 100, 70);
+    model.position.set(500, 300, Z_POS);
+    model.scale.set(scale, scale, scale);
+
     model.rotateX(THREE.MathUtils.degToRad(180));
-    model.rotateY(THREE.MathUtils.degToRad(0));
+    model.rotateY(THREE.MathUtils.degToRad(55));
+    model.rotateZ(THREE.MathUtils.degToRad(85));
 
     this.add(model);
   }
@@ -90,13 +106,18 @@ export default class IntroScene extends THREE.Group {
   }
 
   async addSuitcase() {
+    const scale = 0.4;
     const modelName = `suitcase`;
 
     const callback = (mesh) => {
       mesh.name = modelName;
-      mesh.position.set(-100, -200, 50);
-      mesh.rotateY(THREE.MathUtils.degToRad(15));
-      mesh.rotateX(THREE.MathUtils.degToRad(45));
+
+      mesh.position.set(-50, -125, Z_POS);
+      mesh.scale.set(scale, scale, scale);
+
+      mesh.rotateX(THREE.MathUtils.degToRad(35));
+      mesh.rotateY(THREE.MathUtils.degToRad(-140));
+      mesh.rotateZ(THREE.MathUtils.degToRad(15));
 
       this.add(mesh);
     };
@@ -105,11 +126,16 @@ export default class IntroScene extends THREE.Group {
   }
 
   async addWatermelon() {
+    const scale = 1.5;
     const modelName = `watermelon`;
 
     const callback = (mesh) => {
       mesh.name = modelName;
-      mesh.position.set(150, -100, 150);
+
+      mesh.position.set(-600, -250, Z_POS);
+      mesh.scale.set(scale, scale, scale);
+
+      mesh.rotateZ(THREE.MathUtils.degToRad(140));
 
       this.add(mesh);
     };
@@ -118,18 +144,37 @@ export default class IntroScene extends THREE.Group {
   }
 
   async addAirplane() {
+    const scale = 1;
     const modelName = `airplane`;
     const model = new Model();
     const material = model.getMaterial(`soft`, {color: model.getColor(`white`)});
 
     const callback = (mesh) => {
       mesh.name = modelName;
-      mesh.position.set(-250, -100, 150);
-      mesh.rotateZ(THREE.MathUtils.degToRad(25));
+
+      mesh.position.set(200, 100, Z_POS);
+      mesh.scale.set(scale, scale, scale);
+
+      mesh.rotateX(THREE.MathUtils.degToRad(55));
+      mesh.rotateY(THREE.MathUtils.degToRad(140));
 
       this.add(mesh);
     };
 
     await this.modelsLoader.getModel(modelName, material, callback);
+  }
+
+  addSaturn() {
+    const scale = 0.5;
+    const model = new ModelSaturn({
+      colorBase: `dominantRed`,
+      colorAdditional: `brightPurple`,
+      shouldRenderSattelite: false,
+    });
+
+    model.position.set(350, -100, Z_POS);
+    model.scale.set(scale, scale, scale);
+
+    this.add(model);
   }
 }

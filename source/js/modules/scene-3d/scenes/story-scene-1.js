@@ -46,7 +46,6 @@ export default class StoryScene1 extends THREE.Group {
     });
 
     model.position.set(0, -200, -250);
-    model.rotateY(THREE.MathUtils.degToRad(-45));
 
     this.add(model);
   }

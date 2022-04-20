@@ -10,8 +10,8 @@ export default class Scene3D {
     this.devicePixelRatio = window.devicePixelRatio;
     this.aspectRatio = this.width / this.height;
     this.perspectiveAngle = 35;
-    this.zCoordinateMin = 0.1;
-    this.zCoordinateMax = 3000; // TODO: change to 1000
+    this.cameraZCoordinateMin = 0.1;
+    this.cameraZCoordinateMax = 3000; // TODO: change
 
     this.animationId = null;
     this.material = null;
@@ -85,11 +85,11 @@ export default class Scene3D {
     this.camera = new THREE.PerspectiveCamera(
         this.perspectiveAngle,
         this.aspectRatio,
-        this.zCoordinateMin,
-        this.zCoordinateMax
+        this.cameraZCoordinateMin,
+        this.cameraZCoordinateMax
     );
 
-    this.camera.position.z = 750;
+    this.camera.position.z = 1405;
 
     this.textureLoader = new THREE.TextureLoader();
 
