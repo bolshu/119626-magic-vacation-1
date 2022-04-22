@@ -44,6 +44,10 @@ const MODELS = {
     path: `${MODEL_FOLDER}/compass.gltf`,
     model: null,
   },
+  sonya: {
+    path: `${MODEL_FOLDER}/sonya.gltf`,
+    model: null,
+  },
 };
 
 export default class ModelsLoader {
