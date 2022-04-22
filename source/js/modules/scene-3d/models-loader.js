@@ -40,6 +40,10 @@ const MODELS = {
     path: `${MODEL_FOLDER}/dog.gltf`,
     model: null,
   },
+  compass: {
+    path: `${MODEL_FOLDER}/compass.gltf`,
+    model: null,
+  },
 };
 
 export default class ModelsLoader {

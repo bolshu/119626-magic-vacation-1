@@ -20,6 +20,7 @@ export default class StoryScene3 extends THREE.Group {
     this.addFloor();
     this.addStatic();
     this.addWall();
+    this.addCompass();
   }
 
   addSnowman() {
@@ -68,5 +69,16 @@ export default class StoryScene3 extends THREE.Group {
     };
 
     await this.modelsLoader.getModel(modelName, material, callback);
+  }
+
+  async addCompass() {
+    const modelName = `compass`;
+
+    const callback = (mesh) => {
+      mesh.position.set(50, 0, 20);
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, null, callback);
   }
 }

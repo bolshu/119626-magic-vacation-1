@@ -86,9 +86,9 @@ export default class Scene3DStory extends Scene3D {
 
     this.scene.add(this.getSuitcase());
     this.scene.add(this.getScene1());
-    // this.scene.add(this.getScene2());
-    // this.scene.add(this.getScene3());
-    // this.scene.add(this.getScene4());
+    this.scene.add(this.getScene2());
+    this.scene.add(this.getScene3());
+    this.scene.add(this.getScene4());
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
 
