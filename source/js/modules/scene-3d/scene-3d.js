@@ -74,10 +74,11 @@ export default class Scene3D {
   updateBackground(texture) {
     this.setMaterial(texture);
 
-    const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    const mesh = new THREE.Mesh(geometry, this.material);
+    // TODO: rm mesh
+    // const geometry = new THREE.PlaneGeometry(this.width, this.height);
+    // const mesh = new THREE.Mesh(geometry, this.material);
 
-    this.scene.add(mesh);
+    // this.scene.add(mesh);
   }
 
   init() {

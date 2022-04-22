@@ -6,6 +6,7 @@ import StoryScene1 from "./scenes/story-scene-1";
 import StoryScene2 from "./scenes/story-scene-2";
 import StoryScene3 from "./scenes/story-scene-3";
 import StoryScene4 from "./scenes/story-scene-4";
+import StorySuitcase from "./scenes/story-suitcase";
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
@@ -83,6 +84,7 @@ export default class Scene3DStory extends Scene3D {
   start() {
     this.setSceneBackground(0);
 
+    this.scene.add(this.getSuitcase());
     this.scene.add(this.getScene1());
     // this.scene.add(this.getScene2());
     // this.scene.add(this.getScene3());
@@ -118,34 +120,45 @@ export default class Scene3DStory extends Scene3D {
   }
 
   getScene1() {
-    const story = new StoryScene1();
+    const group = new StoryScene1();
 
-    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
+    group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
 
-    return story;
+    return group;
   }
 
   getScene2() {
-    const story = new StoryScene2();
+    const group = new StoryScene2();
 
-    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 90));
+    group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 90));
 
-    return story;
+    return group;
   }
 
   getScene3() {
-    const story = new StoryScene3();
+    const group = new StoryScene3();
 
-    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 180));
+    group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 180));
 
-    return story;
+    return group;
   }
 
   getScene4() {
-    const story = new StoryScene4();
+    const group = new StoryScene4();
 
-    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 270));
+    group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 270));
 
-    return story;
+    return group;
+  }
+
+  getSuitcase() {
+    const scale = 0.8;
+    const group = new StorySuitcase();
+
+    group.position.set(580, 0, 580);
+    group.scale.set(scale, scale, scale);
+    group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
+
+    return group;
   }
 }
