@@ -36,6 +36,10 @@ const MODELS = {
     path: `${MODEL_FOLDER}/scene4-static-output-1.gltf`,
     model: null,
   },
+  dog: {
+    path: `${MODEL_FOLDER}/dog.gltf`,
+    model: null,
+  },
 };
 
 export default class ModelsLoader {
