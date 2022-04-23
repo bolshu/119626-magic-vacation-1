@@ -19,6 +19,7 @@ export default class ModelPyramid extends Model {
     const mesh = new THREE.Mesh(geometry, material);
 
     mesh.rotateY(THREE.MathUtils.degToRad(45));
+    mesh.castShadow = true;
 
     this.add(mesh);
   }

@@ -29,6 +29,7 @@ export default class StoryScene2 extends THREE.Group {
 
   addStreetLamp() {
     const model = new ModelStreetLamp();
+
     model.position.set(650, 0, 120);
 
     this.add(model);
@@ -36,6 +37,7 @@ export default class StoryScene2 extends THREE.Group {
 
   addPyramid() {
     const model = new ModelPyramid();
+
     model.position.set(230, 140, 280);
 
     this.add(model);
