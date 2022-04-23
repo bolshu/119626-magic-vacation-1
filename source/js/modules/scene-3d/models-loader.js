@@ -56,6 +56,8 @@ export default class ModelsLoader {
       obj3d.traverse((child) => {
         if (child.isMesh) {
           child.material = material;
+          // TODO: cast shadow here
+          // child.castShadow = true;
         }
       });
     }

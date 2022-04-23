@@ -74,10 +74,11 @@ export default class Scene3D {
   updateBackground(texture) {
     this.setMaterial(texture);
 
-    const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    const mesh = new THREE.Mesh(geometry, this.material);
+    // TODO: rm
+    // const geometry = new THREE.PlaneGeometry(this.width, this.height);
+    // const mesh = new THREE.Mesh(geometry, this.material);
 
-    this.scene.add(mesh);
+    // this.scene.add(mesh);
   }
 
   init() {
@@ -97,6 +98,9 @@ export default class Scene3D {
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas
     });
+
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     const color = new THREE.Color(`#5f458c`);
     const alpha = 1;
@@ -163,14 +167,22 @@ export default class Scene3D {
     // Light 2
     const lightUnit2 = new THREE.PointLight(new THREE.Color(`rgb(246,242,255)`), 0.6, 0, 2);
 
-    lightUnit2.position.set(-785, -350, 710);
+    lightUnit2.position.set(-785, -350, -710);
+    lightUnit2.castShadow = true;
+    // lightUnit2.shadow.camera.far = 2550;
+    // lightUnit2.shadow.mapSize.width = 1000;
+    // lightUnit2.shadow.mapSize.height = 1000;
 
     light.add(lightUnit2);
 
     // Light 3
     const lightUnit3 = new THREE.PointLight(new THREE.Color(`rgb(245,254,255)`), 0.95, 0, 2);
 
-    lightUnit3.position.set(730, 800, 985);
+    lightUnit3.position.set(730, 800, -985);
+    lightUnit3.castShadow = true;
+    // lightUnit3.shadow.camera.far = 3000;
+    // lightUnit3.shadow.mapSize.width = 1000;
+    // lightUnit3.shadow.mapSize.height = 1000;
 
     light.add(lightUnit3);
 

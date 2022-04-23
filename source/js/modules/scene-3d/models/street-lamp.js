@@ -25,6 +25,7 @@ export default class ModelStreetLamp extends Model {
     const lampTopMesh = new THREE.Mesh(lampTopGeometry, this.materialMain);
 
     lampTopMesh.position.set(0, 433, 0);
+    lampTopMesh.castShadow = true;
 
     this.add(lampTopMesh);
 
@@ -32,6 +33,7 @@ export default class ModelStreetLamp extends Model {
     const lampMidMesh = new THREE.Mesh(lampMidGeometry, this.materialAdditional);
 
     lampMidMesh.position.set(0, 400, 0);
+    lampMidMesh.castShadow = true;
 
     this.add(lampMidMesh);
 
@@ -39,6 +41,7 @@ export default class ModelStreetLamp extends Model {
     const lampBottomMesh = new THREE.Mesh(lampBottomGeometry, this.materialMain);
 
     lampBottomMesh.position.set(0, 368, 0);
+    lampBottomMesh.castShadow = true;
 
     this.add(lampBottomMesh);
   }
@@ -48,6 +51,7 @@ export default class ModelStreetLamp extends Model {
     const mesh = new THREE.Mesh(geometry, this.materialMain);
 
     mesh.position.set(0, 251, 0);
+    mesh.castShadow = true;
 
     this.add(mesh);
   }
@@ -57,6 +61,7 @@ export default class ModelStreetLamp extends Model {
     const baseTopMesh = new THREE.Mesh(baseTopGeometry, this.materialMain);
 
     baseTopMesh.position.set(0, 120, 0);
+    baseTopMesh.castShadow = true;
 
     this.add(baseTopMesh);
 
@@ -64,6 +69,7 @@ export default class ModelStreetLamp extends Model {
     const baseBottomMesh = new THREE.Mesh(baseBottomGeometry, this.materialMain);
 
     baseBottomMesh.position.set(0, 60, 0);
+    baseBottomMesh.castShadow = true;
 
     this.add(baseBottomMesh);
   }
