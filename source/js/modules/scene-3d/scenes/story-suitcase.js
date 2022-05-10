@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import _ from "../../timing-functions";
 import Animation from '../../animation';
 import ModelsLoader from '../models-loader';
 
