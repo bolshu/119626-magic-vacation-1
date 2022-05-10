@@ -4,17 +4,15 @@ import Animation from '../../animation';
 import ModelsLoader from '../models-loader';
 
 export default class StorySuitcase extends THREE.Group {
-  constructor(scene) {
+  constructor() {
     super();
 
     this.modelsLoader = new ModelsLoader();
-
-    this.init(scene);
   }
 
   addSuitcaseAnimations(scene) {
     const scale = 0.8;
-    const multiplier = 0.2;
+    const multiplier = 0.1;
 
     const animations = [
       new Animation({
@@ -22,15 +20,13 @@ export default class StorySuitcase extends THREE.Group {
           scene.objects.suitcase.position.y = scene.objects.suitcase.position.y - scene.objects.suitcase.position.y * t;
         },
         duration: 1500,
-        easing: _.easeInCubic,
       }),
       new Animation({
         func: (t) => {
           scene.objects.suitcase.scale.set(scale + multiplier * t, scale - multiplier * t, scale + multiplier * t);
         },
-        delay: 1500,
+        delay: 1000,
         duration: 200,
-        easing: _.easeOutCubic,
       }),
       new Animation({
         func: (t) => {
@@ -40,9 +36,8 @@ export default class StorySuitcase extends THREE.Group {
               scale + multiplier - multiplier * t,
           );
         },
-        delay: 1700,
+        delay: 1200,
         duration: 200,
-        easing: _.easeInCubic,
       }),
     ];
 
@@ -74,11 +69,5 @@ export default class StorySuitcase extends THREE.Group {
 
   addAnimations(scene) {
     this.addSuitcaseAnimations(scene);
-  }
-
-  async init(scene) {
-    scene.objects.suitcase = this;
-    await this.constructChildren();
-    this.addAnimations(scene);
   }
 }

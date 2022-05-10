@@ -36,6 +36,8 @@ export default class Scene3DStory extends Scene3D {
     super({canvas});
 
     this.sceneYAngle = -45;
+
+    this.constructChildren();
   }
 
   addBubblesAnimations() {
@@ -81,16 +83,9 @@ export default class Scene3DStory extends Scene3D {
     });
   }
 
-  
   start() {
     this.setSceneBackground(0);
 
-    this.addSuitcase();
-    this.scene.add(this.getScene1());
-    this.scene.add(this.getScene2());
-    this.scene.add(this.getScene3());
-    this.scene.add(this.getScene4());
-  
     super.start();
   }
 
@@ -145,10 +140,22 @@ export default class Scene3DStory extends Scene3D {
   }
 
   addSuitcase() {
-    const group = new StorySuitcase(this);
+    const group = new StorySuitcase();
 
+    group.constructChildren();
     group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
 
+    this.objects.suitcase = group;
+    group.addAnimations(this);
+
     this.scene.add(group);
+  }
+
+  constructChildren() {
+    this.addSuitcase();
+    this.scene.add(this.getScene1());
+    this.scene.add(this.getScene2());
+    this.scene.add(this.getScene3());
+    this.scene.add(this.getScene4());
   }
 }
