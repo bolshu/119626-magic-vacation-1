@@ -35,60 +35,62 @@ export default class Scene3DStory extends Scene3D {
 
     super({canvas});
 
-    this.sceneYAngle = 45;
-
-    this.setAnimations();
+    this.sceneYAngle = -45;
   }
 
-  setAnimations() {
-    this.animations.push(new Animation({
-      func: (progress) => {
-        if (this.material) {
-          this.material.uniforms.uProgressHue = {value: progress};
-        }
-      },
-      duration: 2000,
-    }));
+  addBubblesAnimations() {
+    const animations = [
+      new Animation({
+        func: (progress) => {
+          if (this.material) {
+            this.material.uniforms.uProgressHue = {value: progress};
+          }
+        },
+        duration: 2000,
+      }),
+      new Animation({
+        func: (progress) => {
+          if (this.material) {
+            this.material.uniforms.uProgressBubble1 = {value: progress};
+          }
+        },
+        duration: 1300,
+      }),
+      new Animation({
+        func: (progress) => {
+          if (this.material) {
+            this.material.uniforms.uProgressBubble2 = {value: progress};
+          }
+        },
+        duration: 1200,
+        delay: 700,
+      }),
+      new Animation({
+        func: (progress) => {
+          if (this.material) {
+            this.material.uniforms.uProgressBubble3 = {value: progress};
+          }
+        },
+        duration: 1100,
+        delay: 1200,
+      })
+    ];
 
-    this.animations.push(new Animation({
-      func: (progress) => {
-        if (this.material) {
-          this.material.uniforms.uProgressBubble1 = {value: progress};
-        }
-      },
-      duration: 1300,
-    }));
-
-    this.animations.push(new Animation({
-      func: (progress) => {
-        if (this.material) {
-          this.material.uniforms.uProgressBubble2 = {value: progress};
-        }
-      },
-      duration: 1200,
-      delay: 700,
-    }));
-
-    this.animations.push(new Animation({
-      func: (progress) => {
-        if (this.material) {
-          this.material.uniforms.uProgressBubble3 = {value: progress};
-        }
-      },
-      duration: 1100,
-      delay: 1200,
-    }));
+    animations.forEach((animation) => {
+      this.animations.push(animation);
+    });
   }
 
+  
   start() {
     this.setSceneBackground(0);
 
-    this.scene.add(this.getSuitcase());
+    this.addSuitcase();
     this.scene.add(this.getScene1());
     this.scene.add(this.getScene2());
     this.scene.add(this.getScene3());
     this.scene.add(this.getScene4());
-
+  
     super.start();
   }
 
@@ -108,12 +110,6 @@ export default class Scene3DStory extends Scene3D {
     } else {
       super.stopAnimation();
     }
-  }
-
-  renderScene() {
-    this.controls.update(); // TODO: remove. for devs only
-
-    super.renderScene();
   }
 
   getScene1() {
@@ -148,14 +144,11 @@ export default class Scene3DStory extends Scene3D {
     return group;
   }
 
-  getSuitcase() {
-    const scale = 0.8;
-    const group = new StorySuitcase();
+  addSuitcase() {
+    const group = new StorySuitcase(this);
 
-    group.position.set(580, 0, 580);
-    group.scale.set(scale, scale, scale);
     group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
 
-    return group;
+    this.scene.add(group);
   }
 }
