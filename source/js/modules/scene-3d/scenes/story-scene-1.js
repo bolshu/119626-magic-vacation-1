@@ -146,7 +146,6 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   addAnimations(mixer) {
-    console.log(`add anim`, this.animationClip);
     this.animationClip.forEach((track) => {
       mixer.push(track);
     });
