@@ -82,15 +82,15 @@ export default class Scene3DStory extends Scene3D {
     this.addBubblesAnimations();
   }
 
-  start() {
+  async start() {
     this.addAnimations();
     this.setSceneBackground(0);
 
-    this.addSuitcase();
-    this.scene.add(this.getScene1());
-    this.scene.add(this.getScene2());
-    this.scene.add(this.getScene3());
-    this.scene.add(this.getScene4());
+    // this.addSuitcase();
+    await this.addScene1();
+    // this.scene.add(this.getScene2());
+    // this.scene.add(this.getScene3());
+    // this.scene.add(this.getScene4());
 
     super.start();
   }
@@ -119,12 +119,13 @@ export default class Scene3DStory extends Scene3D {
     super.renderScene();
   }
 
-  getScene1() {
+  async addScene1() {
     const group = new StoryScene1();
 
+    await group.addAnimations(this.animations);
     group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
 
-    return group;
+    this.scene.add(group);
   }
 
   getScene2() {

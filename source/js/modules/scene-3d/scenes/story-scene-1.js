@@ -6,24 +6,19 @@ import ModelCarpet from "../models/carpet";
 import ModelFloor from "../models/floor";
 import Model from "../models/model";
 import ModelsLoader from "../models-loader";
+import _ from '../../timing-functions';
+import Animation from '../../animation';
 
 export default class StoryScene1 extends THREE.Group {
   constructor() {
     super();
 
     this.modelsLoader = new ModelsLoader();
+    this.objects = {};
+    this.animationClip = [];
 
     this.constructChildren();
-  }
-
-  constructChildren() {
-    this.addFlower();
-    this.addSaturn();
-    this.addCarpet();
-    this.addFloor();
-    this.addStatic();
-    this.addWall();
-    this.addDog();
+    this.setAnimations();
   }
 
   async addFlower() {
@@ -104,13 +99,28 @@ export default class StoryScene1 extends THREE.Group {
     });
   }
 
+  addDogTailAnimations() {
+
+    this.animationClip.push(new Animation({
+      func: (t) => {
+        // TODO: implement
+        this.objects.dogTail.position.y = this.objects.dogTail.position.y * t + 200;
+      },
+      duration: `infinite`,
+      easing: _.easeInCubic,
+    }));
+  }
+
   async addDog() {
     const callback = (mesh) => {
       mesh.position.set(470, 0, 470);
       mesh.rotateY(THREE.MathUtils.degToRad(60));
       mesh.castShadow = true;
 
+      this.objects.dogTail = mesh.getObjectByName(`Tail`);
+
       this.add(mesh);
+      this.addDogTailAnimations();
     };
 
     await this.modelsLoader.getModel({
@@ -118,6 +128,27 @@ export default class StoryScene1 extends THREE.Group {
       material: null,
       castShadow: true,
       callback,
+    });
+  }
+
+  async constructChildren() {
+    // this.addFlower();
+    // this.addSaturn();
+    // this.addCarpet();
+    // this.addFloor();
+    // this.addStatic();
+    // this.addWall();
+    await this.addDog();
+  }
+
+  setAnimations() {
+    this.addDogTailAnimations();
+  }
+
+  addAnimations(mixer) {
+    console.log(`add anim`, this.animationClip);
+    this.animationClip.forEach((track) => {
+      mixer.push(track);
     });
   }
 }
