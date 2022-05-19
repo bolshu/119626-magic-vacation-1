@@ -100,11 +100,12 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   addDogTailAnimations() {
-
     this.animationClip.push(new Animation({
-      func: (t) => {
-        // TODO: implement
-        this.objects.dogTail.position.y = this.objects.dogTail.position.y * t + 200;
+      func: (t, details) => {
+        const amplitude = 0.3;
+        const period = 500;
+
+        this.objects.dogTail.rotation.x = this.objects.dogTail.rotation.x + amplitude * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
       },
       duration: `infinite`,
       easing: _.easeInCubic,
@@ -112,15 +113,15 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   async addDog() {
-    const callback = (mesh) => {
+    const callback = async (mesh) => {
       mesh.position.set(470, 0, 470);
       mesh.rotateY(THREE.MathUtils.degToRad(60));
       mesh.castShadow = true;
 
       this.objects.dogTail = mesh.getObjectByName(`Tail`);
 
-      this.add(mesh);
-      this.addDogTailAnimations();
+      await this.add(mesh);
+      await this.addDogTailAnimations();
     };
 
     await this.modelsLoader.getModel({
@@ -132,12 +133,12 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   async constructChildren() {
-    // this.addFlower();
-    // this.addSaturn();
-    // this.addCarpet();
-    // this.addFloor();
-    // this.addStatic();
-    // this.addWall();
+    this.addFlower();
+    this.addSaturn();
+    this.addCarpet();
+    this.addFloor();
+    this.addStatic();
+    this.addWall();
     await this.addDog();
   }
 
