@@ -83,6 +83,7 @@ export default class ModelSaturn extends Model {
 
     mesh.rotateX(THREE.MathUtils.degToRad(10));
     mesh.castShadow = this.castShadow;
+    mesh.name = `SaturnRing`;
 
     this.add(mesh);
   }

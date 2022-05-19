@@ -36,6 +36,32 @@ export default class StoryScene1 extends THREE.Group {
     this.add(model);
   }
 
+  addSaturnAnimations() {
+    this.animationClip.push(new Animation({
+      func: (t, details) => {
+        const rotationAmplitude = 0.002;
+        const positionAmplitude = 0.75;
+        const period = 10000;
+
+        this.objects.saturn.rotation.x = this.objects.saturn.rotation.x + rotationAmplitude * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
+        this.objects.saturn.position.x = this.objects.saturn.position.x + positionAmplitude * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
+      },
+      duration: `infinite`,
+    }));
+  }
+
+  addSaturnRingAnimations() {
+    this.animationClip.push(new Animation({
+      func: (t, details) => {
+        const amplitude = 0.008;
+        const period = 3000;
+
+        this.objects.saturnRing.rotation.x = this.objects.saturnRing.rotation.x + amplitude * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
+      },
+      duration: `infinite`,
+    }));
+  }
+
   addSaturn() {
     const model = new ModelSaturn({
       colorBase: `dominantRed`,
@@ -46,6 +72,11 @@ export default class StoryScene1 extends THREE.Group {
     model.position.set(300, 500, 200);
 
     this.add(model);
+
+    const ring = model.getObjectByName(`SaturnRing`);
+
+    this.objects.saturn = model;
+    this.objects.saturnRing = ring;
   }
 
   addCarpet() {
@@ -144,6 +175,8 @@ export default class StoryScene1 extends THREE.Group {
 
   setAnimations() {
     this.addDogTailAnimations();
+    this.addSaturnAnimations();
+    this.addSaturnRingAnimations();
   }
 
   addAnimations(mixer) {
